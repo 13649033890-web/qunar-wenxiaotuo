@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 "use client";
 
 import { type ChangeEvent, useEffect, useState } from "react";
@@ -37,6 +38,8 @@ import {
   UploadSimple,
   X,
 } from "@phosphor-icons/react";
+
+const asset = (url: string) => url;
 
 type View =
   | "home"
@@ -80,11 +83,11 @@ type Hotel = {
 };
 
 const tabAssets: Record<AppTab, string> = {
-  home: "/reference/qunar-home.jpg",
-  trips: "/reference/qunar-trips.jpg",
-  service: "/reference/qunar-service.jpg",
-  world: "/reference/qunar-world.jpg",
-  profile: "/reference/qunar-profile.jpg",
+  home: `${import.meta.env.BASE_URL}reference/qunar-home.jpg`,
+  trips: `${import.meta.env.BASE_URL}reference/qunar-trips.jpg`,
+  service: `${import.meta.env.BASE_URL}reference/qunar-service.jpg`,
+  world: `${import.meta.env.BASE_URL}reference/qunar-world.jpg`,
+  profile: `${import.meta.env.BASE_URL}reference/qunar-profile.jpg`,
 };
 
 const homeServices = [
@@ -204,7 +207,7 @@ const haidianHotelCatalog: Hotel[] = [
     distance: "距区域中心直线2.1公里",
     highlight: "位置便利，服务和早餐表现均衡",
     imageTone: "mint",
-    imageSrc: "/reference/haidian-hotel-1.jpg",
+    imageSrc: `${import.meta.env.BASE_URL}reference/haidian-hotel-1.jpg`,
   },
   {
     id: 2,
@@ -219,7 +222,7 @@ const haidianHotelCatalog: Hotel[] = [
     distance: "距苏州街地铁站步行约6分钟",
     highlight: "交通方便，房间细节与服务评价突出",
     imageTone: "blue",
-    imageSrc: "/reference/haidian-hotel-2.jpg",
+    imageSrc: `${import.meta.env.BASE_URL}reference/haidian-hotel-2.jpg`,
   },
   {
     id: 3,
@@ -234,7 +237,7 @@ const haidianHotelCatalog: Hotel[] = [
     distance: "距区域中心直线2.1公里",
     highlight: "预算更低，适合短住和高性价比需求",
     imageTone: "orange",
-    imageSrc: "/reference/haidian-hotel-3.jpg",
+    imageSrc: `${import.meta.env.BASE_URL}reference/haidian-hotel-3.jpg`,
   },
   {
     id: 4,
@@ -249,7 +252,7 @@ const haidianHotelCatalog: Hotel[] = [
     distance: "距苏州街地铁站步行约5分钟",
     highlight: "靠近地铁，适合北大及中关村周边行程",
     imageTone: "purple",
-    imageSrc: "/reference/haidian-hotel-4.jpg",
+    imageSrc: `${import.meta.env.BASE_URL}reference/haidian-hotel-4.jpg`,
   },
   {
     id: 5,
@@ -433,7 +436,7 @@ const guideNextQuestions = [
 function QunarCamel({ compact = false, solid = false }: { compact?: boolean; solid?: boolean }) {
   return (
     <span className={compact ? "qunar-camel compact" : "qunar-camel"} aria-hidden="true">
-      <img src={solid ? "/brand/qunar-camel-solid-white.png" : "/brand/qunar-camel-outline.png"} alt="" />
+      <img src={solid ? `${import.meta.env.BASE_URL}brand/qunar-camel-solid-white.png` : `${import.meta.env.BASE_URL}brand/qunar-camel-outline.png`} alt="" />
     </span>
   );
 }
@@ -565,11 +568,11 @@ export default function Home() {
   useEffect(() => {
     const assets = [
       ...Object.values(tabAssets),
-      "/reference/qunar-current-search.png",
-      "/reference/qunar-haidian-sug.jpg",
-      "/reference/qunar-haidian-hotels.jpg",
-      "/brand/qunar-home-entry-clean-patch.png",
-      "/brand/qunar-camel-solid-white.png",
+      `${import.meta.env.BASE_URL}reference/qunar-current-search.png`,
+      `${import.meta.env.BASE_URL}reference/qunar-haidian-sug.jpg`,
+      `${import.meta.env.BASE_URL}reference/qunar-haidian-hotels.jpg`,
+      `${import.meta.env.BASE_URL}brand/qunar-home-entry-clean-patch.png`,
+      `${import.meta.env.BASE_URL}brand/qunar-camel-solid-white.png`,
       ...haidianHotelCatalog.flatMap((hotel) => hotel.imageSrc ? [hotel.imageSrc] : []),
     ];
     assets.forEach((src) => {
@@ -748,7 +751,7 @@ export default function Home() {
 
   const renderNormalSearch = () => (
     <div className="reference-flow-screen search-sug-screen">
-      <img src="/reference/qunar-haidian-sug.jpg" alt="去哪儿海淀区酒店搜索建议页" />
+      <img src={asset(`${import.meta.env.BASE_URL}reference/qunar-haidian-sug.jpg`)} alt="去哪儿海淀区酒店搜索建议页" />
       <div className="search-page-chrome">
         <PhoneStatus />
         <div className="search-mode-header">
@@ -771,7 +774,7 @@ export default function Home() {
 
   const renderHotelLanding = () => (
     <div className="reference-flow-screen hotel-landing-screen">
-      <img src="/reference/qunar-haidian-hotels.jpg" alt="去哪儿海淀区酒店落地页" />
+      <img src={asset(`${import.meta.env.BASE_URL}reference/qunar-haidian-hotels.jpg`)} alt="去哪儿海淀区酒店落地页" />
       <button className="landing-back-hotspot" type="button" onClick={() => openView("normal-search")} aria-label="返回搜索建议" />
       <div className="landing-hotel-hotspots" aria-label="海淀区酒店列表">
         {[1, 2, 3, 4].map((hotelId) => (
@@ -1691,7 +1694,7 @@ export default function Home() {
             </button>
           ))}
         </nav>
-        <a className="source-download" href="/qunar-wenxiaotuo-cursor.zip" download>
+        <a className="source-download" href={asset(`${import.meta.env.BASE_URL}qunar-wenxiaotuo-cursor.zip`)} download>
           <DownloadSimple size={18} weight="bold" />
           <span><strong>下载 Cursor 可编辑源码</strong><small>标准 React / TypeScript 项目</small></span>
         </a>

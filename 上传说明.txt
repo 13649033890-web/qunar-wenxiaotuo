@@ -1,0 +1,11 @@
+这是问小驼 GitHub Pages 版本，保留页面交互，原本地项目未改动。
+
+1. 将本目录内容上传至 qunar-wenxiaotuo 仓库根目录，不要上传整个 ZIP 或在外面多套一层目录。
+2. 同名文件选择替换。必须上传隐藏目录 .github，其中包含 workflows/deploy-pages.yml。
+3. 仓库 Settings → Pages → Source 选择 GitHub Actions。
+4. 在 Actions 中打开 Deploy GitHub Pages，必要时点击 Run workflow，等待绿色成功标记。
+5. 成功后访问 https://13649033890-web.github.io/qunar-wenxiaotuo/ 。未成功前该地址不代表已上线。
+
+本地预览：npm ci 后执行 npm run dev，打开 http://127.0.0.1:5195/qunar-wenxiaotuo/ 。
+不要上传 node_modules 或 dist。
+原有的 worker、build、db、.openai 等旧文件可以保留，新部署不会调用它们。
